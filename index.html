@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Giulia de Yemanjá, especialista em Tarot, Baralho Cigano e Baralho de Pomba Gira. Venha tirar suas cartas comigo.">
+<meta name="theme-color" content="#0d0708">
+<meta property="og:title" content="Giulia de Yemanjá Tarot">
+<meta property="og:description" content="Venha tirar suas cartas comigo.">
+<meta property="og:type" content="website">
+<title>Giulia de Yemanjá Tarot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: coluna única pensada para celular. Nome no topo, retrato em arco com leque de cartas atrás, botões de contato logo abaixo, depois descrição, "Sobre o tarot" e contato. */
+:root {
+  --bg: #0d0708;
+  --surface: #170b0d;
+  --blood: #a3202a;
+  --blood-hi: #c4343a;
+  --gold: #cda85f;
+  --gold-dim: rgba(205, 168, 95, 0.38);
+  --bone: #f0e4d4;
+  --muted: #c2aba0;
+  --font-display: "Almendra", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-body: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse 70% 38% at 50% 14%, rgba(163, 32, 42, 0.30), transparent 70%),
+    radial-gradient(circle at 12% 62%, rgba(163, 32, 42, 0.10), transparent 40%),
+    var(--bg);
+  background-color: var(--bg);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.5;
+  padding-block: 2.5rem 3rem;
+  overflow-x: clip;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 34rem; margin-inline: auto; display: flex; flex-direction: column; gap: 3.5rem; }
+section { min-width: 0; }
+h1, h2 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; }
+
+/* Hero */
+.hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.6rem; }
+h1 { font-size: clamp(2.3rem, 9.5vw, 3.2rem); line-height: 1.05; color: var(--bone); letter-spacing: 0.01em; }
+h1 span { display: block; font-size: 0.5em; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-family: var(--font-body); font-weight: 500; margin-bottom: 0.6rem; }
+
+.stage {
+  --w: min(calc((100vw - 32px) / 2.2), 300px);
+  --h: calc(var(--w) * 1.32);
+  position: relative;
+  width: var(--w);
+}
+.card {
+  position: absolute;
+  left: var(--l);
+  top: var(--t);
+  width: var(--cw);
+  height: var(--ch);
+  animation: 1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+}
+.card svg { display: block; width: 100%; height: 100%; }
+.c1, .c4 { --cw: calc(var(--w) * 0.50); --ch: calc(var(--w) * 0.86); --t: calc(var(--w) * 0.42); z-index: 1; }
+.c2, .c3 { --cw: calc(var(--w) * 0.58); --ch: var(--w); --t: calc(var(--w) * 0.24); z-index: 2; }
+.c1 { --l: calc(var(--w) * -0.60); animation-name: outL; }
+.c2 { --l: calc(var(--w) * -0.40); animation-name: outL; animation-delay: 0.08s; }
+.c3 { --l: calc(var(--w) * 0.82);  animation-name: outR; animation-delay: 0.08s; }
+.c4 { --l: calc(var(--w) * 1.10);  animation-name: outR; }
+@keyframes outL { from { transform: translateX(calc(var(--w) * 0.45)); } }
+@keyframes outR { from { transform: translateX(calc(var(--w) * -0.45)); } }
+
+.arch {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: var(--h);
+  border-radius: 999px 999px 0 0;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 0 0 5px var(--bg), 0 0 0 6.5px var(--gold), 0 28px 60px rgba(163, 32, 42, 0.35);
+}
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
+
+.tagline { font-family: var(--font-display); font-style: italic; font-size: 1.55rem; line-height: 1.25; color: var(--bone); max-width: 20rem; }
+
+/* Botões */
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; width: 100%; }
+.btn {
+  flex: 1 1 13rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.65rem;
+  min-height: 3.1rem; padding: 0 1.3rem;
+  border-radius: 4px;
+  border: 1px solid var(--gold-dim);
+  color: var(--bone);
+  font-weight: 700; font-size: 1.02rem; letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.btn svg { width: 1.35rem; height: 1.35rem; flex: none; }
+.btn.primary { background: var(--blood); border-color: var(--blood-hi); }
+.btn.primary:hover { background: var(--blood-hi); }
+.btn.ghost:hover { border-color: var(--gold); background: rgba(205, 168, 95, 0.08); }
+.btn:active { transform: translateY(1px); }
+a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* Especialidades */
+.specs { list-style: none; margin: 0; padding: 0; text-align: center; border-block: 1px solid var(--gold-dim); }
+.specs li { padding: 0.95rem 0.5rem; font-size: 1.12rem; color: var(--bone); }
+.specs li + li { border-top: 1px solid rgba(205, 168, 95, 0.18); }
+.specs li:first-child { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); }
+
+/* Sobre o tarot */
+.sobre h2, .contato h2 { font-size: 2.1rem; color: var(--bone); margin-bottom: 1.6rem; text-align: center; }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.6rem; }
+.steps li { display: grid; grid-template-columns: 3.2rem 1fr; gap: 0.9rem; align-items: start; min-width: 0; }
+.num { font-family: var(--font-display); font-size: 2rem; line-height: 1; color: var(--gold); text-align: center; padding-top: 0.1rem; border-right: 1px solid var(--gold-dim); padding-right: 0.7rem; }
+.steps strong { display: block; font-size: 1.12rem; letter-spacing: 0.02em; margin-bottom: 0.2rem; color: var(--bone); }
+.steps p { margin: 0; color: var(--muted); }
+
+/* Contato */
+.contato { background: var(--surface); border: 1px solid var(--gold-dim); border-radius: 4px; padding: 2rem 1.3rem 1.6rem; }
+.contato h2 { margin-bottom: 1.2rem; }
+.rows { display: flex; flex-direction: column; gap: 0.6rem; }
+.row { display: flex; align-items: center; gap: 0.9rem; padding: 0.8rem 0.9rem; border: 1px solid rgba(205, 168, 95, 0.2); border-radius: 4px; color: var(--bone); text-decoration: none; min-width: 0; transition: border-color 0.2s, background-color 0.2s; }
+.row:hover { border-color: var(--gold); background: rgba(205, 168, 95, 0.06); }
+.row svg { width: 2rem; height: 2rem; flex: none; color: var(--gold); }
+.row small { display: block; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.row span.v { display: block; font-size: 1.15rem; font-weight: 500; overflow-wrap: anywhere; user-select: all; }
+footer { text-align: center; color: var(--muted); font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+@media (prefers-reduced-motion: reduce) { .card { animation: none; } .btn, .row { transition: none; } }
+</style>
+<style>
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="ico-ig" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/>
+    </symbol>
+    <symbol id="ico-wa" viewBox="0 0 24 24">
+      <path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" transform="translate(6.2 6.2) scale(0.5)" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main>
+  <section class="hero">
+    <h1><span>Tarot</span>Giulia de Yemanjá</h1>
+
+    <div class="stage" aria-hidden="false">
+      <div class="card c1" aria-hidden="true"><svg viewBox="0 0 140 240" aria-hidden="true">
+<rect x="1.5" y="1.5" width="137" height="237" rx="9" fill="#120708" stroke="#cda85f" stroke-width="2"/>
+<rect x="8" y="8" width="124" height="224" rx="4" fill="#2a0d12" stroke="#cda85f" stroke-opacity=".6"/>
+<text x="70" y="28" text-anchor="middle" font-size="13" letter-spacing="3" fill="#cda85f" style="font-family:var(--font-display)">XVII</text>
+<circle cx="70" cy="92" r="50" fill="#3d0f16" opacity=".7"/><polygon points="70.0,54.0 75.0,80.0 96.9,65.1 82.0,87.0 108.0,92.0 82.0,97.0 96.9,118.9 75.0,104.0 70.0,130.0 65.0,104.0 43.1,118.9 58.0,97.0 32.0,92.0 58.0,87.0 43.1,65.1 65.0,80.0" fill="#cda85f"/><polygon points="70.0,72.0 73.1,84.6 84.1,77.9 77.4,88.9 90.0,92.0 77.4,95.1 84.1,106.1 73.1,99.4 70.0,112.0 66.9,99.4 55.9,106.1 62.6,95.1 50.0,92.0 62.6,88.9 55.9,77.9 66.9,84.6" fill="#8f6d2c"/><circle cx="70" cy="92" r="5" fill="#f0e4d4"/><polygon points="26.0,44.5 27.7,50.3 33.5,52.0 27.7,53.7 26.0,59.5 24.3,53.7 18.5,52.0 24.3,50.3" fill="#f0e4d4"/><polygon points="114.0,46.5 115.7,52.3 121.5,54.0 115.7,55.7 114.0,61.5 112.3,55.7 106.5,54.0 112.3,52.3" fill="#f0e4d4"/><polygon points="20.0,88.5 21.7,94.3 27.5,96.0 21.7,97.7 20.0,103.5 18.3,97.7 12.5,96.0 18.3,94.3" fill="#f0e4d4"/><polygon points="120.0,92.5 121.7,98.3 127.5,100.0 121.7,101.7 120.0,107.5 118.3,101.7 112.5,100.0 118.3,98.3" fill="#f0e4d4"/><polygon points="32.0,130.5 33.7,136.3 39.5,138.0 33.7,139.7 32.0,145.5 30.3,139.7 24.5,138.0 30.3,136.3" fill="#f0e4d4"/><polygon points="108.0,132.5 109.7,138.3 115.5,140.0 109.7,141.7 108.0,147.5 106.3,141.7 100.5,140.0 106.3,138.3" fill="#f0e4d4"/><polygon points="70.0,138.5 71.7,144.3 77.5,146.0 71.7,147.7 70.0,153.5 68.3,147.7 62.5,146.0 68.3,144.3" fill="#f0e4d4"/><path d="M8 207 V176 Q40 160 70 172 Q100 160 132 176 V207 Z" fill="#1a0a0d"/><ellipse cx="70" cy="188" rx="40" ry="9" fill="#3c1620" stroke="#cda85f" stroke-opacity=".5"/><path d="M40 188 q7 -4 14 0 t14 0 t14 0 t14 0" stroke="#f0e4d4" stroke-width="1.2" fill="none"/>
+<rect x="8" y="207" width="124" height="25" fill="#120708" fill-opacity=".7"/>
+<text transform="translate(24 198) rotate(-90)" font-size="10.5" letter-spacing="1.4" fill="#f0e4d4" style="font-family:var(--font-display)">A ESTRELA</text>
+</svg></div>
+      <div class="card c2" aria-hidden="true"><svg viewBox="0 0 140 240" aria-hidden="true">
+<rect x="1.5" y="1.5" width="137" height="237" rx="9" fill="#120708" stroke="#cda85f" stroke-width="2"/>
+<rect x="8" y="8" width="124" height="224" rx="4" fill="#2a0d12" stroke="#cda85f" stroke-opacity=".6"/>
+<text x="70" y="28" text-anchor="middle" font-size="13" letter-spacing="3" fill="#cda85f" style="font-family:var(--font-display)">III</text>
+<circle cx="70" cy="104" r="54" fill="#4a1119" opacity=".65"/><polygon points="37.4,79.8 38.6,83.5 42.4,84.8 38.6,86.1 37.4,89.8 36.1,86.1 32.4,84.8 36.1,83.5" fill="#cda85f"/><polygon points="45.3,68.8 46.6,72.5 50.3,73.8 46.6,75.1 45.3,78.8 44.0,75.1 40.3,73.8 44.0,72.5" fill="#cda85f"/><polygon points="56.7,61.5 58.0,65.3 61.7,66.5 58.0,67.8 56.7,71.5 55.4,67.8 51.7,66.5 55.4,65.3" fill="#cda85f"/><polygon points="70.0,59.0 71.3,62.7 75.0,64.0 71.3,65.3 70.0,69.0 68.7,65.3 65.0,64.0 68.7,62.7" fill="#cda85f"/><polygon points="83.3,61.5 84.6,65.3 88.3,66.5 84.6,67.8 83.3,71.5 82.0,67.8 78.3,66.5 82.0,65.3" fill="#cda85f"/><polygon points="94.7,68.8 96.0,72.5 99.7,73.8 96.0,75.1 94.7,78.8 93.4,75.1 89.7,73.8 93.4,72.5" fill="#cda85f"/><polygon points="102.6,79.8 103.9,83.5 107.6,84.8 103.9,86.1 102.6,89.8 101.4,86.1 97.6,84.8 101.4,83.5" fill="#cda85f"/><ellipse cx="70" cy="86" rx="14" ry="13" fill="#8b2a1c"/><circle cx="70" cy="84" r="10" fill="#e8c9a8"/><path d="M70 96 C52 102 40 150 26 207 L114 207 C100 150 88 102 70 96 Z" fill="#7a1520" stroke="#cda85f" stroke-width="1"/><path d="M70 100 V207 M58 130 Q70 140 82 130" stroke="#cda85f" stroke-opacity=".5" fill="none"/><circle cx="60" cy="98" r="1.6" fill="#f0e4d4"/><circle cx="65" cy="98" r="1.6" fill="#f0e4d4"/><circle cx="70" cy="98" r="1.6" fill="#f0e4d4"/><circle cx="75" cy="98" r="1.6" fill="#f0e4d4"/><circle cx="80" cy="98" r="1.6" fill="#f0e4d4"/><path d="M98 172 C80 158 84 140 94 142 C97 143 98 146 98 148 C98 146 99 143 102 142 C112 140 116 158 98 172 Z" fill="#cda85f"/><circle cx="98" cy="152" r="4" fill="none" stroke="#2a0d12" stroke-width="1.4"/><path d="M98 156 V165 M94.5 161 H101.5" stroke="#2a0d12" stroke-width="1.4"/><path d="M22 207 V166" stroke="#cda85f" stroke-width="1.3"/><ellipse cx="19" cy="170" rx="1.8" ry="3.4" transform="rotate(-30 19 170)" fill="#cda85f"/><ellipse cx="25" cy="170" rx="1.8" ry="3.4" transform="rotate(30 25 170)" fill="#cda85f"/><ellipse cx="19" cy="176" rx="1.8" ry="3.4" transform="rotate(-30 19 176)" fill="#cda85f"/><ellipse cx="25" cy="176" rx="1.8" ry="3.4" transform="rotate(30 25 176)" fill="#cda85f"/><ellipse cx="19" cy="182" rx="1.8" ry="3.4" transform="rotate(-30 19 182)" fill="#cda85f"/><ellipse cx="25" cy="182" rx="1.8" ry="3.4" transform="rotate(30 25 182)" fill="#cda85f"/><ellipse cx="19" cy="188" rx="1.8" ry="3.4" transform="rotate(-30 19 188)" fill="#cda85f"/><ellipse cx="25" cy="188" rx="1.8" ry="3.4" transform="rotate(30 25 188)" fill="#cda85f"/><ellipse cx="19" cy="194" rx="1.8" ry="3.4" transform="rotate(-30 19 194)" fill="#cda85f"/><ellipse cx="25" cy="194" rx="1.8" ry="3.4" transform="rotate(30 25 194)" fill="#cda85f"/><path d="M34 207 V166" stroke="#cda85f" stroke-width="1.3"/><ellipse cx="31" cy="170" rx="1.8" ry="3.4" transform="rotate(-30 31 170)" fill="#cda85f"/><ellipse cx="37" cy="170" rx="1.8" ry="3.4" transform="rotate(30 37 170)" fill="#cda85f"/><ellipse cx="31" cy="176" rx="1.8" ry="3.4" transform="rotate(-30 31 176)" fill="#cda85f"/><ellipse cx="37" cy="176" rx="1.8" ry="3.4" transform="rotate(30 37 176)" fill="#cda85f"/><ellipse cx="31" cy="182" rx="1.8" ry="3.4" transform="rotate(-30 31 182)" fill="#cda85f"/><ellipse cx="37" cy="182" rx="1.8" ry="3.4" transform="rotate(30 37 182)" fill="#cda85f"/><ellipse cx="31" cy="188" rx="1.8" ry="3.4" transform="rotate(-30 31 188)" fill="#cda85f"/><ellipse cx="37" cy="188" rx="1.8" ry="3.4" transform="rotate(30 37 188)" fill="#cda85f"/><ellipse cx="31" cy="194" rx="1.8" ry="3.4" transform="rotate(-30 31 194)" fill="#cda85f"/><ellipse cx="37" cy="194" rx="1.8" ry="3.4" transform="rotate(30 37 194)" fill="#cda85f"/>
+<rect x="8" y="207" width="124" height="25" fill="#120708" fill-opacity=".7"/>
+<text x="15" y="223" text-anchor="start" font-size="8.4" letter-spacing="0.8" fill="#f0e4d4" style="font-family:var(--font-display)">A IMPERATRIZ</text>
+</svg></div>
+      <div class="card c3" aria-hidden="true"><svg viewBox="0 0 140 240" aria-hidden="true">
+<rect x="1.5" y="1.5" width="137" height="237" rx="9" fill="#120708" stroke="#cda85f" stroke-width="2"/>
+<rect x="8" y="8" width="124" height="224" rx="4" fill="#2a0d12" stroke="#cda85f" stroke-opacity=".6"/>
+<polygon points="70.0,18.0 71.4,22.6 76.0,24.0 71.4,25.4 70.0,30.0 68.6,25.4 64.0,24.0 68.6,22.6" fill="#cda85f"/>
+<path d="M24 207 V84 a46 46 0 0 1 92 0 V207 Z" fill="#3a0e14" stroke="#cda85f" stroke-opacity=".5"/><path d="M34 207 V90 a36 36 0 0 1 72 0 V207" fill="none" stroke="#cda85f" stroke-opacity=".25"/><path d="M34 64 V200" stroke="#7b4a1c" stroke-width="3.2" stroke-linecap="round"/><ellipse cx="29" cy="70" rx="2.6" ry="6" transform="rotate(-40 29 70)" fill="#8a9a3c"/><ellipse cx="39" cy="82" rx="2.6" ry="6" transform="rotate(40 39 82)" fill="#8a9a3c"/><ellipse cx="29" cy="94" rx="2.6" ry="6" transform="rotate(-40 29 94)" fill="#8a9a3c"/><path d="M70 92 C56 98 46 144 38 207 L102 207 C94 144 84 98 70 92 Z" fill="#b8862b" stroke="#f0e4d4" stroke-opacity=".6"/><path d="M70 96 C64 130 62 170 60 207 M70 96 C76 130 78 170 80 207" stroke="#7a4a12" stroke-opacity=".6" fill="none"/><ellipse cx="70" cy="80" rx="12" ry="11" fill="#8b2a1c"/><circle cx="70" cy="82" r="9" fill="#e8c9a8"/><path d="M59 74 L62 61 L66 69 L70 58 L74 69 L78 61 L81 74 Z" fill="#cda85f"/><path d="M88 118 L96 104" stroke="#b8862b" stroke-width="4" stroke-linecap="round"/><path d="M98 100 V132" stroke="#6b7a2c" stroke-width="2"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(0 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(30 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(60 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(90 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(120 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(150 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(180 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(210 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(240 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(270 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(300 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><ellipse cx="98" cy="86" rx="3.2" ry="8" transform="rotate(330 98 86) translate(0 -8)" fill="#e0a526" stroke="#8a5a0a" stroke-width=".5"/><circle cx="98" cy="86" r="6" fill="#3a1a0c"/><path d="M96 207 C88 207 86 196 92 190 C95 186 98 186 100 184 L100 174 L103 179 L108 179 L110 174 L110 185 C116 190 118 200 114 207 Z" fill="#0b0506"/><path d="M114 204 C124 204 124 192 118 192" stroke="#0b0506" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="103" cy="183" r="1.3" fill="#cda85f"/><circle cx="108" cy="183" r="1.3" fill="#cda85f"/>
+<rect x="8" y="207" width="124" height="25" fill="#120708" fill-opacity=".7"/>
+<text x="125" y="223" text-anchor="end" font-size="7.6" letter-spacing="0.6" fill="#f0e4d4" style="font-family:var(--font-display)">RAINHA DE PAUS</text>
+</svg></div>
+      <div class="card c4" aria-hidden="true"><svg viewBox="0 0 140 240" aria-hidden="true">
+<rect x="1.5" y="1.5" width="137" height="237" rx="9" fill="#120708" stroke="#cda85f" stroke-width="2"/>
+<rect x="8" y="8" width="124" height="224" rx="4" fill="#2a0d12" stroke="#cda85f" stroke-opacity=".6"/>
+<text x="70" y="28" text-anchor="middle" font-size="13" letter-spacing="3" fill="#cda85f" style="font-family:var(--font-display)">XX</text>
+<circle cx="70" cy="76" r="50" fill="#4a1119" opacity=".65"/><path d="M8 180 L40 150 L70 176 L100 146 L132 180 V207 H8 Z" fill="#240b0f"/><line x1="112" y1="104" x2="24" y2="156" stroke="#cda85f" stroke-opacity=".7" stroke-width="1"/><line x1="112" y1="104" x2="52" y2="156" stroke="#cda85f" stroke-opacity=".7" stroke-width="1"/><line x1="112" y1="104" x2="80" y2="156" stroke="#cda85f" stroke-opacity=".7" stroke-width="1"/><line x1="112" y1="104" x2="108" y2="156" stroke="#cda85f" stroke-opacity=".7" stroke-width="1"/><line x1="112" y1="104" x2="134" y2="156" stroke="#cda85f" stroke-opacity=".7" stroke-width="1"/><path d="M66 72 C40 52 24 70 20 100 C34 90 46 92 60 90 Z" fill="#f0e4d4" opacity=".92"/><path d="M74 72 C100 52 116 70 120 100 C106 90 94 92 80 90 Z" fill="#f0e4d4" opacity=".92"/><path d="M60 68 Q70 62 80 68 L84 110 L56 110 Z" fill="#7a1520" stroke="#cda85f" stroke-opacity=".6"/><circle cx="70" cy="58" r="8" fill="#e8c9a8"/><ellipse cx="70" cy="52" rx="9" ry="5" fill="#8b2a1c"/><path d="M78 76 L114 98 L108 110 L72 82 Z" fill="#cda85f"/><rect x="96" y="104" width="16" height="14" fill="#f0e4d4"/><path d="M104 106 V116 M99 111 H109" stroke="#a3202a" stroke-width="1.8"/><rect x="16" y="184" width="28" height="14" rx="1.5" fill="#1a0a0d" stroke="#cda85f" stroke-opacity=".55"/><circle cx="30" cy="170" r="3.6" fill="#e8c9a8"/><path d="M30 174 V186 M22 164 L30 172 L38 164" stroke="#f0e4d4" stroke-width="1.6" fill="none" stroke-linecap="round"/><rect x="50" y="184" width="28" height="14" rx="1.5" fill="#1a0a0d" stroke="#cda85f" stroke-opacity=".55"/><circle cx="64" cy="170" r="3.6" fill="#e8c9a8"/><path d="M64 174 V186 M56 164 L64 172 L72 164" stroke="#f0e4d4" stroke-width="1.6" fill="none" stroke-linecap="round"/><rect x="84" y="184" width="28" height="14" rx="1.5" fill="#1a0a0d" stroke="#cda85f" stroke-opacity=".55"/><circle cx="98" cy="170" r="3.6" fill="#e8c9a8"/><path d="M98 174 V186 M90 164 L98 172 L106 164" stroke="#f0e4d4" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="54" cy="40" r="9" fill="#f0e4d4" opacity=".85"/><circle cx="66" cy="35" r="11" fill="#f0e4d4" opacity=".85"/><circle cx="80" cy="36" r="10" fill="#f0e4d4" opacity=".85"/><circle cx="90" cy="42" r="8" fill="#f0e4d4" opacity=".85"/>
+<rect x="8" y="207" width="124" height="25" fill="#120708" fill-opacity=".7"/>
+<text transform="translate(116 38) rotate(90)" font-size="10.5" letter-spacing="1.4" fill="#f0e4d4" style="font-family:var(--font-display)">O JULGAMENTO</text>
+</svg></div>
+      <div class="arch"><img alt="Giulia de Yemanjá com chapéu de bruxa, segurando uma carta de tarot" src="img/giulia.jpg"></div>
+    </div>
+
+    <p class="tagline">Venha tirar suas cartas comigo</p>
+
+    <div class="cta">
+      <a class="btn primary" href="https://wa.me/5511973995419?text=Ol%C3%A1%20Giulia!%20Vim%20pelo%20seu%20site%20e%20quero%20tirar%20minhas%20cartas." target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-wa"/></svg>Chamar no WhatsApp
+      </a>
+      <a class="btn ghost" href="https://www.instagram.com/giu_deyemanja/" target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#ico-ig"/></svg>Ver o Instagram
+      </a>
+    </div>
+  </section>
+
+  <section aria-label="Especialidades">
+    <ul class="specs">
+      <li>Especialista em Tarot</li>
+      <li>Tarot, Baralho Cigano e Baralho de Pomba Gira</li>
+      <li>2 anos de cartomancia</li>
+      <li>Umbanda Omolokô</li>
+    </ul>
+  </section>
+
+  <section class="sobre">
+    <h2>Sobre o tarot</h2>
+    <ol class="steps">
+      <li>
+        <div class="num" aria-hidden="true">I</div>
+        <div><strong>Foco e Pergunta</strong><p>A pessoa define uma questão ou área da vida sobre a qual busca clareza.</p></div>
+      </li>
+      <li>
+        <div class="num" aria-hidden="true">II</div>
+        <div><strong>Sincronicidade e Intuição</strong><p>Ao embaralhar e tirar as cartas, os símbolos sorteados funcionam como um espelho do momento presente ou do subconsciente.</p></div>
+      </li>
+      <li>
+        <div class="num" aria-hidden="true">III</div>
+        <div><strong>Leitura dos Símbolos</strong><p>O tarólogo interpreta a combinação das cartas para oferecer insights, ajudar na tomada de decisões ou trazer novas perspectivas sobre a situação.</p></div>
+      </li>
+    </ol>
+  </section>
+
+
+  <footer>Giulia de Yemanjá · Tarot</footer>
+</main>
+</body>
+</html>
